@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMC_NET", "DMC_NET\DMC_NET.csproj", "{68B7A732-0216-4522-835B-D6DC0F805AF7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DMC_CPP", "DMC_CPP\DMC_CPP.vcxitems", "{45E572DE-A6E3-4DC6-8331-D2EF50869F77}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68B7A732-0216-4522-835B-D6DC0F805AF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68B7A732-0216-4522-835B-D6DC0F805AF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68B7A732-0216-4522-835B-D6DC0F805AF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68B7A732-0216-4522-835B-D6DC0F805AF7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {85657E53-4EB6-44EE-B333-CE653FBDA9CC}
+	EndGlobalSection
+EndGlobal
