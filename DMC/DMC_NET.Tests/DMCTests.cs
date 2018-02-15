@@ -2,6 +2,8 @@
 using DMC_NET.Tests.TestEntities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using DMC_NET.Exceptions;
+using System.Threading.Tasks;
 
 namespace DMC_NET.Tests
 {
@@ -178,6 +180,119 @@ namespace DMC_NET.Tests
             tvReadResult.Should().BeEquivalentTo(_testTV2, "Should be updated value");
             laptopReadResult.Should().BeEquivalentTo(_testLaptop2, "Should be updated value");
             toyReadResult.Should().BeEquivalentTo(_testToy2, "Should be updated value");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(EntityNotFoundException))]
+        public void RegisterEntities_Add_UpdateWithIncorrectId_Exception()
+        {
+            // Arrange
+            var tvRepository = _instance.Register<TVEntity>();
+
+            // Act / Assert
+            var idTv1 = tvRepository.Update(_testTV1);
+            var idTv1AfterUpdate = tvRepository.Update(_testTV2, idTv1 + 1);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(EntityNotFoundException))]
+        public void RegisterEntities_Add_ReadWithIncorrectId_Exception()
+        {
+            // Arrange
+            var tvRepository = _instance.Register<TVEntity>();
+
+            // Act / Assert
+            var idTv1 = tvRepository.Update(_testTV1);
+            var readResult = tvRepository.ReadById(idTv1 + 1);
+        }
+
+        [TestMethod]
+        public void RegisterTwice_SameRepository()
+        {
+            // Arrange
+
+            // Act 
+            var tvRepository1 = _instance.Register<TVEntity>();
+            var tvRepository2 = _instance.Register<TVEntity>();
+
+            //Assert
+            tvRepository1.Should().Be(tvRepository2);
+        }
+
+        [TestMethod]
+        public void RegisterFromDifferentThreads_AllRepositoriesAreTheSame()
+        {
+            // Arrange
+            var tvRepository = _instance.Register<TVEntity>(16);
+            var laptopRepository = _instance.Register<LaptopEntity>(16);
+            var toyRepository = _instance.Register<ToyEntity>(16);
+
+            // Act / Assert
+            Task[] tasks = new Task[16];
+            for (int i = 0; i < 16; ++i)
+            {
+                tasks[i] = Task.Run(() =>
+                {
+                    for (int j = 0; j < 100000; ++j)
+                    {
+                        var localTvRepository = _instance.Register<TVEntity>();
+                        localTvRepository.Should().Be(tvRepository);
+
+                        var localLaptopRepository = _instance.Register<LaptopEntity>();
+                        localLaptopRepository.Should().Be(laptopRepository);
+
+                        var localToyRepository = _instance.Register<ToyEntity>();
+                        localToyRepository.Should().Be(toyRepository);
+                    }
+                });
+            }
+
+
+            Task.WaitAll(tasks);
+        }
+
+        [TestMethod]
+        public void Register_Add_Update_ReadById_ReadAll_FromDifferentThreads_CorrectReadResult()
+        {
+            // Arrange
+
+            // Act / Assert
+            Task[] tasks = new Task[16];
+            for (int i = 0; i < 16; ++i)
+            {
+                tasks[i] = Task.Run(() =>
+                {
+                    for (int j = 0; j < 100000; ++j)
+                    {
+                        // Register
+                        var localToyRepository = _instance.Register<ToyEntity>(16, 16 * 2 * 100000);
+
+                        // Add
+                        var id1 = localToyRepository.Update(_testToy1);
+                        var id2 = localToyRepository.Update(_testToy2);
+
+                        // Update
+                        localToyRepository.Update(_testToy3, id2);
+
+                        // ReadById
+                        var read1 = localToyRepository.ReadById(id1);
+                        var read2 = localToyRepository.ReadById(id2);
+
+                        // Assert
+                        read1.Should().BeEquivalentTo(_testToy1);
+                        read2.Should().BeEquivalentTo(_testToy3);
+                    }
+                });
+            }
+
+
+            Task.WaitAll(tasks);
+
+            // Assert
+            var toyRepository = _instance.Register<ToyEntity>();
+            var readAllResult = toyRepository.ReadAll();
+
+            readAllResult.Count.Should().Be(16 * 2 * 100000);
         }
     }
 }
