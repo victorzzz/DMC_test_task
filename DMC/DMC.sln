@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMC_NET", "DMC_NET\DMC_NET.csproj", "{68B7A732-0216-4522-835B-D6DC0F805AF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMC_NET", "DMC_NET\DMC_NET.csproj", "{68B7A732-0216-4522-835B-D6DC0F805AF7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DMC_CPP", "DMC_CPP\DMC_CPP.vcxitems", "{45E572DE-A6E3-4DC6-8331-D2EF50869F77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMC_NET.Tests", "DMC_NET.Tests\DMC_NET.Tests.csproj", "{DD1CE03A-EAB3-4183-A0C6-D03AD4495F7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +19,10 @@ Global
 		{68B7A732-0216-4522-835B-D6DC0F805AF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68B7A732-0216-4522-835B-D6DC0F805AF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68B7A732-0216-4522-835B-D6DC0F805AF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD1CE03A-EAB3-4183-A0C6-D03AD4495F7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD1CE03A-EAB3-4183-A0C6-D03AD4495F7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD1CE03A-EAB3-4183-A0C6-D03AD4495F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD1CE03A-EAB3-4183-A0C6-D03AD4495F7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
