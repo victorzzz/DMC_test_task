@@ -3,3 +3,8 @@
 bin
 obj
 /DMC/packages
+/DMC/Release
+/DMC/DMC_CPP.Tests/Debug
+/DMC/DMC_CPP.Tests/Release
+/DMC/DMC_CPP.Tests/*.user
+/DMC/TestResults

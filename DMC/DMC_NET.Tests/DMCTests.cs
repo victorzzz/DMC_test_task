@@ -12,9 +12,9 @@ namespace DMC_NET.Tests
     {
         private DMC _instance;
 
-        TVEntity _testTV1, _testTV2, _testTV3;
-        LaptopEntity _testLaptop1, _testLaptop2, _testLaptop3;
-        ToyEntity _testToy1, _testToy2, _testToy3;
+        private TVEntity _testTV1, _testTV2, _testTV3;
+        private LaptopEntity _testLaptop1, _testLaptop2, _testLaptop3;
+        private ToyEntity _testToy1, _testToy2, _testToy3;
 
         [TestInitialize]
         public void TestInitialize()

@@ -9,7 +9,7 @@ namespace DMC_NET.Internal
     internal class Repository<TEntity> : IRepository<TEntity>
     {
         private readonly ConcurrentDictionary<int, TEntity> _storage;
-        private int _lastId = -1;
+        private volatile int _lastId = -1;
 
         public Repository(int estimatedCuncurencyLevel, int estimatedNumberOfObjects)
         {
